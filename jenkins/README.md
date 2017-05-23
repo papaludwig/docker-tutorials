@@ -70,31 +70,34 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
 
 ## Navigate to Jenkins and setup the instance
 
-Once you go to the Jenkins homepage available at http://localhost:8080/, you will be prompted for a administrators password. This can be found in the logs of the Jenkins container while it was setting up. Furthermore, examining the logs is a great exercise as many future docker issues can be resolved this way.
-
-First retrieve the container id with docker container ls
+1. Go to the Jenkins homepage for your container at http://FQDN:8080/ (where FQDN is the fully qualified domain name for your VM machine that your instructor has given you).
+2. You will be prompted for a one-time administrators password. Jenkins writes this password to the system log while it is being installed. Learning how to examine a container's logs is a great exercise as many future docker issues can be resolved this way.
+3. Retrieve the jenkins container id with docker container ls
 
 ```
 docker container ls
 ```
 
-Next, pass in the container id to docker logs and scan for the creation of an admin password.
+4. Pass in the container id to docker logs and scan for the creation of an admin password.
 
 ```
 docker logs <container id>
 ```
 
-This password will enable you to proceed with setting up Jenkins.
+5. If you don't see the password, it might be that Jenkins is still installing and running for the first time in your container. Keep trying and you should see that the log is getting longer. The password will eventually show up and will be a long hexadecimal string.
 
 
-## Run a docker command from the Jenkins console
+## Set up a job in Jenkins that runs a new Docker container
 
-1. Open the Jenkins home page in a browser and click the “create new jobs” link.
-2. Enter the item name (e.g. “docker-test”), select “Freestyle project” and click OK.
-3. On the configuration page, click “Add build step” then “Execute shell”.
-4. In the command box enter “sudo docker run hello-world”
-5. Click “Save”.
-6. Click “Build Now”.
+1. Once Jenkins has complete it's internal setup with the one-time password, it will start the SetupWizard.
+2. Click "Install Recommended Plugins" to allow the recommended plugins to be installed (including the pipeline plugin that we'll be using later). Remember that all this "action" is happening within the container.
+3. Create your first admin user... use admin as the username and DockerStudentPW0 as the password. You can use any email address. Click "Save and Finish".
+4. Once the Jenkins dashboard appears, click the “create new jobs” link.
+5. Enter the item name (e.g. “docker-test”), select “Freestyle project” and click OK.
+6. On the configuration page in the *Build* section, click “Add build step” then “Execute shell”.
+7. In the command box enter “sudo docker run hello-world”
+8. Click “Save”.
+9. Click “Build Now” in the left-side nav.
 
 With luck, you have triggered a successful docker hello world. On your host
 docker VM, run
