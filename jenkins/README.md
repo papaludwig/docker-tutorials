@@ -1,6 +1,6 @@
 # Part 1 - Jenkins & Docker
 
-In this example we will run Jenkins from a container, which will in turn spin up containers on the host computer.
+In this example we will run Jenkins from a container, and, because we will share a volume that includes access to docker.sock, our new container will be able to communicate with the host docker engine to spin up containers on the host.
 
 
 ## Create a directory that will contain our image's files and the dockerfile
