@@ -81,7 +81,7 @@ docker container ls
 4. Pass in the container id to docker logs and scan for the creation of an admin password.
 
 ```
-docker logs <container id>
+docker container logs <container id>
 ```
 
 5. If you don't see the password, it might be that Jenkins is still installing and running for the first time in your container. Keep trying and you should see that the log is getting longer. The password will eventually show up and will be a long hexadecimal string.
