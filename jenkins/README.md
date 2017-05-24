@@ -95,7 +95,10 @@ docker logs <container id>
 4. Once the Jenkins dashboard appears, click the “create new jobs” link.
 5. Enter the item name (e.g. “docker-test”), select “Freestyle project” and click OK.
 6. On the configuration page in the *Build* section, click “Add build step” then “Execute shell”.
-7. In the command box enter “sudo docker run hello-world”
+7. In the command box enter:
+```
+sudo docker run hello-world
+```
 8. Click “Save”.
 9. Click “Build Now” in the left-side nav.
 
